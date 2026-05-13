@@ -1,5 +1,6 @@
 #include <iostream>
-#include <Windows.h>
+//#include <Windows.h> // para SetConsoleCP y SetConsoleOutputCP y poner acentos en la consola de Windows
+#include <locale.h> // para setlocale y usar el español en la consola
 
 using namespace std;
 
@@ -19,8 +20,10 @@ public:
 	
 };
 int main() {
-	SetConsoleCP(1252);
-	SetConsoleOutputCP(1252);
+	//SetConsoleCP(1252);
+	//SetConsoleOutputCP(1252); // para usar acentos en la consola de Windows
+
+	setlocale(LC_ALL, "spanish"); // para usar el español en la consola
 
 	Guerrero g;
 	Mago m;
