@@ -1,11 +1,12 @@
 #include <iostream>
+#include <Windows.h>
 
 using namespace std;
 
 class Guerrero{
 public:
 	void pelea() { // todos los guerreros saben pelear
-		cout << "¡Pelea!" << endl;
+		cout << "¡Pelea mamón ñoño!" << endl;
 	}
 };
 
@@ -18,6 +19,9 @@ public:
 	
 };
 int main() {
+	SetConsoleCP(1252);
+	SetConsoleOutputCP(1252);
+
 	Guerrero g;
 	Mago m;
 	g.pelea(); // vínculo estático
@@ -26,12 +30,13 @@ int main() {
 	// el compilador sabe exactamente a qué
 	// función llamar en tiempo de compilación
 
-	Guerrero* pg = &m; // upcasting: un Mago es un Guerrero
+	Guerrero* pg = &m; // UPCAST: un Mago es un Guerrero
 	pg->pelea(); // el mago pelea según el guerrero
 	// pg->hechiza(); // INCORRECTO, hechiza() no es accesible
 	// debido a la resolución de la llamada
-	// por vínculo estático
+	// por vínculo estático, el compilador solo ve el tipo Guerrero* y no sabe que pg apunta a un Mago
+	// por lo tanto, no puede llamar a hechiza() a través de pg
 
-	Guerrero g2 = m; // slicing, se pierde la parte de Mago, solo queda la parte de Guerrero
+	Guerrero g2 = m; // SLICING: se pierde la parte de Mago, solo queda la parte de Guerrero
 
 };
